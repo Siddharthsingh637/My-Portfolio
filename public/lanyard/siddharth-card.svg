@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1260" viewBox="0 0 900 1260">
+  <defs>
+    <linearGradient id="base" x1="120" y1="80" x2="780" y2="1180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f7efe4"/>
+      <stop offset="0.58" stop-color="#efe0cf"/>
+      <stop offset="1" stop-color="#d9c0a8"/>
+    </linearGradient>
+    <linearGradient id="red" x1="148" y1="164" x2="788" y2="1120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#b94a40"/>
+      <stop offset="1" stop-color="#6f1f1b"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#1a0f0d" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="900" height="1260" rx="68" fill="url(#base)"/>
+  <rect x="46" y="46" width="808" height="1168" rx="52" fill="none" stroke="#1b1513" stroke-opacity="0.12" stroke-width="4"/>
+  <path d="M0 0H900V322C752 372 598 378 438 342C259 302 111 314 0 378V0Z" fill="url(#red)"/>
+  <circle cx="450" cy="146" r="48" fill="#f7efe4" fill-opacity="0.92"/>
+  <circle cx="450" cy="146" r="27" fill="#151112"/>
+  <g filter="url(#softShadow)">
+    <rect x="140" y="382" width="620" height="620" rx="42" fill="#151112"/>
+    <rect x="166" y="408" width="568" height="568" rx="28" fill="#211817"/>
+    <path d="M166 756C266 688 381 668 511 694C611 714 687 703 734 661V976H166V756Z" fill="#8f2a24" fill-opacity="0.86"/>
+    <path d="M166 408H734V587C636 634 529 642 413 612C306 584 223 594 166 642V408Z" fill="#f6efe6" fill-opacity="0.08"/>
+    <circle cx="450" cy="620" r="116" fill="#f6efe6"/>
+    <text x="450" y="650" text-anchor="middle" font-family="Avenir Next, Inter, Arial, sans-serif" font-size="118" font-weight="700" fill="#151112">S</text>
+  </g>
+  <text x="450" y="1078" text-anchor="middle" font-family="Avenir Next, Inter, Arial, sans-serif" font-size="54" font-weight="700" fill="#181311">Siddharth Singh</text>
+  <text x="450" y="1136" text-anchor="middle" font-family="Avenir Next, Inter, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="4" fill="#8f2a24">FULL STACK DEVELOPER</text>
+  <text x="450" y="1184" text-anchor="middle" font-family="Avenir Next, Inter, Arial, sans-serif" font-size="24" font-weight="500" fill="#5d504a">Node.js . Express . React . Spring Boot</text>
+</svg>

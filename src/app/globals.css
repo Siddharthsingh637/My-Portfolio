@@ -1,26 +1,252 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6efe6;
+  --foreground: #181311;
+  --color-charcoal: #090809;
+  --color-charcoal-soft: #151112;
+  --color-red: #8f2a24;
+  --color-red-soft: rgba(143, 42, 36, 0.2);
+  --color-ivory: #f6efe6;
+  --color-ivory-deep: #ebe0d2;
+  --color-line-dark: rgba(255, 248, 239, 0.08);
+  --color-line-light: rgba(24, 19, 17, 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-padding-top: 2rem;
+  background: var(--color-charcoal);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(143, 42, 36, 0.22);
+  color: #fff6ef;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 248, 239, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 248, 239, 0.04) 1px, transparent 1px);
+  background-position: center;
+  background-size: 72px 72px;
+}
+
+.hero-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 0.6px, transparent 0.6px);
+  background-size: 14px 14px;
+}
+
+.light-grid {
+  background-image:
+    linear-gradient(to right, rgba(24, 19, 17, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 19, 17, 0.04) 1px, transparent 1px);
+  background-size: 96px 96px;
+}
+
+.hero-vignette {
+  background:
+    radial-gradient(circle at 50% 18%, transparent 0%, rgba(7, 6, 7, 0.18) 42%, rgba(7, 6, 7, 0.82) 100%),
+    linear-gradient(180deg, rgba(7, 6, 7, 0.12) 0%, rgba(7, 6, 7, 0.55) 100%);
+}
+
+.hero-scanline {
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgba(255, 248, 239, 0.03) 0px,
+    rgba(255, 248, 239, 0.03) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  mix-blend-mode: soft-light;
+}
+
+.hero-headline-stage {
+  min-height: clamp(7.5rem, 22vw, 11.5rem);
+}
+
+.hero-headline-text {
+  text-wrap: balance;
+}
+
+@keyframes cert-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-text-shimmer {
+  background-size: 200% auto;
+  animation: text-shimmer 4s linear infinite;
+}
+
+.cert-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.cert-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  animation: cert-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.cert-marquee:hover .cert-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cert-track {
+    animation-duration: 90s;
+  }
+}
+
+/* Navbar styles for better visibility */
+.navbar-backdrop {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Ensure proper z-index stacking */
+.navbar-container {
+  position: relative;
+  z-index: 9999;
+}
+
+/* Projects — dark runway + horizontal snap scroll */
+.projects-runway {
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(143, 42, 36, 0.22), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 60%, rgba(215, 166, 109, 0.06), transparent 50%),
+    linear-gradient(180deg, #060506 0%, #0c0a0b 45%, #080708 100%);
+}
+
+.projects-runway-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 248, 239, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 248, 239, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, black 12%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, black 12%, transparent 72%);
+}
+
+.projects-panel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(143, 42, 36, 0.55) rgba(255, 248, 239, 0.06);
+}
+
+.projects-panel-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+
+.projects-panel-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 248, 239, 0.045);
+}
+
+.projects-panel-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(143, 42, 36, 0.75), rgba(215, 166, 109, 0.45));
+  border-radius: 999px;
+}
+
+.projects-scroll-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+}
+
+.projects-strip {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem));
+  padding-block: 0.25rem 1rem;
+  padding-inline: max(1.5rem, calc((100vw - min(100vw, 80rem)) / 2));
+  scrollbar-width: thin;
+  scrollbar-color: rgba(143, 42, 36, 0.45) rgba(255, 248, 239, 0.06);
+}
+
+.projects-strip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.projects-strip::-webkit-scrollbar-track {
+  background: rgba(255, 248, 239, 0.04);
+  border-radius: 999px;
+}
+
+.projects-strip::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(143, 42, 36, 0.5), rgba(215, 166, 109, 0.35));
+  border-radius: 999px;
+}
+
+.projects-strip > * {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-strip {
+    scroll-behavior: auto;
+  }
 }
