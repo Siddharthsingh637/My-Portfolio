@@ -8,13 +8,18 @@
   --foreground-dark: #0A0A0A;
   --foreground-light: #F2EFE9;
   --muted-stone: #B8B2A6;
-  --accent-red: #8F2A24;
+  /* Dark oxblood — premium accent */
+  --accent-red: #7A1F1F;
+  --accent-red-deep: #5C1616;
+  --accent-red-soft: rgba(122, 31, 31, 0.16);
+  --accent-red-glow: rgba(122, 31, 31, 0.42);
   --white: #FFFFFF;
   /* Legacy compat */
   --background: #EAE6DF;
   --foreground: #0A0A0A;
   --color-charcoal: #0A0A0A;
   --color-ivory: #EAE6DF;
+  --color-red: #7A1F1F;
 }
 
 * {
@@ -45,7 +50,7 @@ a {
 }
 
 ::selection {
-  background: rgba(143, 42, 36, 0.35);
+  background: var(--accent-red-glow);
   color: #fff6ef;
 }
 
@@ -132,7 +137,7 @@ a {
   color: rgba(10,10,10,0.3);
 }
 .underline-input:focus {
-  border-bottom-color: var(--foreground-dark);
+  border-bottom-color: var(--accent-red);
 }
 
 /* ─── Magnetic Button Pill ─── */
@@ -153,26 +158,58 @@ a {
   transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
 .pill-btn:hover {
-  background: var(--foreground-dark);
-  color: var(--paper);
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+  color: var(--paper-deep);
 }
 
 .pill-btn-light {
-  border-color: var(--foreground-light);
+  border-color: rgba(242, 239, 233, 0.28);
   color: var(--foreground-light);
 }
 .pill-btn-light:hover {
-  background: var(--foreground-light);
-  color: var(--matte-black);
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+  color: var(--paper-deep);
 }
 
-/* ─── Accordion Services ─── */
-.service-row {
-  border-bottom: 1px solid rgba(242,239,233,0.12);
-  transition: background 0.2s ease;
+.pill-btn-accent {
+  border-color: var(--accent-red);
+  background: var(--accent-red);
+  color: var(--paper-deep);
 }
-.service-row:first-child {
-  border-top: 1px solid rgba(242,239,233,0.12);
+.pill-btn-accent:hover {
+  background: var(--accent-red-deep);
+  border-color: var(--accent-red-deep);
+  color: var(--paper-deep);
+}
+
+.accent-text {
+  color: var(--accent-red);
+}
+
+.accent-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--accent-red);
+  box-shadow: 0 0 0 4px var(--accent-red-soft);
+}
+
+/* ─── Services preview card swap ─── */
+@keyframes fadeRise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-preview-enter {
+  animation: fadeRise 0.35s ease;
 }
 
 /* ─── Reduced motion ─── */

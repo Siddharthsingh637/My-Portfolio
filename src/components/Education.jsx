@@ -48,10 +48,10 @@ const TIMELINE = [
   },
   {
     year: "2025",
-    title: "Co-Founded The Bytehouse",
-    sub: "Digital agency · Patna & Remote",
-    type: "founding",
-    tags: ["Generative AI", "Full-Stack", "SEO"],
+    title: "Freelance Developer",
+    sub: "Independent projects · Patna & Remote",
+    type: "freelance",
+    tags: ["Full-Stack", "Client Work", "Gen-AI Features"],
   },
 ];
 
@@ -59,14 +59,14 @@ const TYPE_COLOR = {
   education: "#EAE6DF",
   cert: "#B8B2A6",
   work: "#F2EFE9",
-  founding: "#FFFFFF",
+  freelance: "#FFFFFF",
 };
 
 const TYPE_LABEL = {
   education: "Education",
   cert: "Certification",
   work: "Experience",
-  founding: "Founding",
+  freelance: "Freelance",
 };
 
 export default function Education() {
@@ -125,7 +125,7 @@ export default function Education() {
         {/* Header */}
         <div className="mb-20">
           <p
-            className="text-[11px] tracking-[0.28em] uppercase text-white/30 font-semibold mb-4"
+            className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-[var(--accent-red)]"
             style={{ fontFamily: "var(--font-jakarta)" }}
           >
             Timeline

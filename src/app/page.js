@@ -1,5 +1,5 @@
 import LenisProvider from "@/components/LenisProvider";
-import Navbar from "@/components/Navbar";
+// import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Education from "@/components/Education";
@@ -20,7 +20,7 @@ export default function Page() {
 
         {/* Everything slides over the hero */}
         <div className="relative z-[2]">
-          <Navbar />
+          {/* <Navbar /> */}
           <About />
           <Education />
           <Manifesto />

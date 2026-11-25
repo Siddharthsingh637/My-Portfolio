@@ -20,9 +20,9 @@ const NAV_COLS = [
     ],
   },
   {
-    heading: "Studio",
+    heading: "Work",
     links: [
-      { label: "The Bytehouse", href: "#services" },
+      { label: "Services", href: "#services" },
       { label: "Resume", href: "/siddharth-resume.pdf", external: true },
     ],
   },
@@ -44,17 +44,18 @@ export default function Footer() {
           {/* Brand column */}
           <div>
             <p
-              className="text-sm font-bold tracking-[0.2em] uppercase text-white mb-4"
+              className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-white"
               style={{ fontFamily: "var(--font-jakarta)" }}
             >
-              Siddharth Singh
+              Siddharth<span className="text-[var(--accent-red)]">.</span>
             </p>
             <p
               className="text-[11px] text-white/35 leading-relaxed"
               style={{ fontFamily: "var(--font-jakarta)" }}
             >
-              Full-Stack Developer &amp; Co-Founder
-              of The Bytehouse.
+              Full-Stack Developer &amp; Freelancer.
+              <br />
+              Available for remote projects.
               <br />
               Patna, India.
             </p>
@@ -64,7 +65,7 @@ export default function Footer() {
           {NAV_COLS.map((col) => (
             <div key={col.heading}>
               <p
-                className="text-[10px] font-semibold tracking-[0.26em] uppercase text-white/30 mb-4"
+                className="mb-4 text-[10px] font-semibold uppercase tracking-[0.26em] text-[var(--accent-red)]"
                 style={{ fontFamily: "var(--font-jakarta)" }}
               >
                 {col.heading}
@@ -76,7 +77,7 @@ export default function Footer() {
                       href={link.href}
                       target={link.external ? "_blank" : undefined}
                       rel={link.external ? "noopener noreferrer" : undefined}
-                      className="text-xs text-white/50 hover:text-white transition-colors duration-200"
+                      className="text-xs text-white/50 transition-colors duration-200 hover:text-[var(--accent-red)]"
                       style={{ fontFamily: "var(--font-jakarta)" }}
                     >
                       {link.label}

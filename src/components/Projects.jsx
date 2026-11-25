@@ -1,62 +1,178 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const FILTERS = ["All", "Education", "SaaS", "Commerce", "Tooling"];
+
 const PROJECTS = [
   {
     id: "01",
-    title: "Federated Multi-College Collaboration Platform",
+    title: "Federated Collaboration",
+    tagline: "Real-time cross-campus briefs, workspaces, and video rooms.",
     category: "Educational Platform",
-    year: "2024",
-    tech: ["React", "Node.js", "WebRTC", "Socket.io"],
-    description:
-      "A federated platform enabling real-time cross-campus collaboration with live video conferencing, shared workspaces, and institutional role management.",
+    filter: "Education",
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/Siddharthsingh637",
+    art: "sphere",
   },
   {
     id: "02",
-    title: "Smart Institutional Admin Dashboard",
+    title: "Admin Dashboard",
+    tagline: "Attendance, grading, and analytics for institutions at scale.",
     category: "Institutional SaaS",
-    year: "2024",
-    tech: ["Next.js", "Express", "MySQL", "Prisma"],
-    description:
-      "Full-featured admin SaaS for academic institutions — attendance, grading, analytics, and role-based access control at scale.",
+    filter: "SaaS",
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/Siddharthsingh637",
+    art: "gold",
   },
   {
     id: "03",
-    title: "Abhilashit Automobiles EV Platform",
+    title: "EV Commerce Platform",
+    tagline: "Inventory, bookings, and payments for an automobile client.",
     category: "Commerce Platform",
-    year: "2024",
-    tech: ["React", "Express", "Stripe", "MongoDB"],
-    description:
-      "End-to-end e-commerce and EV showcase platform with live inventory, booking flows, and payment integration for an automobile client.",
+    filter: "Commerce",
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/Siddharthsingh637",
+    art: "geo",
   },
   {
     id: "04",
-    title: "Real-Time Collaborative Code Editor",
+    title: "Collaborative Code Editor",
+    tagline: "Live cursor sync, pair programming, and isolated execution.",
     category: "Developer Tooling",
-    year: "2025",
-    tech: ["Socket.io", "Monaco Editor", "Docker", "Node.js"],
-    description:
-      "VS Code-grade collaborative code editor with live cursor sync, multi-language support, isolated Docker execution sandboxes, and real-time pair programming.",
+    filter: "Tooling",
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/Siddharthsingh637",
+    art: "portrait",
   },
 ];
 
+function CardArt({ type }) {
+  if (type === "sphere") {
+    return (
+      <div className="absolute inset-0 bg-[#8a8a8a]">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 42%, #9a9a9a 0%, #6e6e6e 55%, #5a5a5a 100%)",
+          }}
+        />
+        <div
+          className="absolute left-1/2 top-[42%] h-[58%] w-[58%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle at 32% 28%, #f4c56a 0%, #e08a1a 22%, #1aa3c4 38%, #0e7fa3 70%, #0a5f7a 100%)",
+            boxShadow:
+              "inset -18px -22px 40px rgba(0,0,0,0.28), 0 28px 50px rgba(0,0,0,0.22)",
+          }}
+        />
+        <div
+          className="absolute left-1/2 top-[34%] h-[18%] w-[42%] -translate-x-1/2 rounded-full opacity-50"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(255,255,255,0.55), transparent 70%)",
+          }}
+        />
+      </div>
+    );
+  }
+
+  if (type === "gold") {
+    return (
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at 58% 28%, #f3e0b0 0%, #c9a46a 28%, #8a6a3a 62%, #3d2a14 100%)",
+        }}
+      />
+    );
+  }
+
+  if (type === "geo") {
+    return (
+      <div className="absolute inset-0 bg-[#0b0d12]">
+        <svg
+          className="absolute inset-0 h-full w-full"
+          viewBox="0 0 400 400"
+          preserveAspectRatio="xMidYMid slice"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="geoShine" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#9aa7bf" stopOpacity="0.55" />
+              <stop offset="100%" stopColor="#1a1f2a" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+          {Array.from({ length: 9 }).map((_, i) => (
+            <polygon
+              key={i}
+              points={`${40 + i * 18},40 ${220 + i * 12},90 ${180 - i * 8},360 ${20 + i * 10},300`}
+              fill="none"
+              stroke="url(#geoShine)"
+              strokeWidth="1.2"
+              opacity={0.28 + (i % 3) * 0.08}
+            />
+          ))}
+        </svg>
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(160deg, rgba(255,255,255,0.08), transparent 40%, rgba(0,0,0,0.35))",
+          }}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="absolute inset-0 bg-[#151515]">
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at 55% 30%, #3a3a3a 0%, #1a1a1a 55%, #0c0c0c 100%)",
+        }}
+      />
+      <div className="absolute left-1/2 top-[46%] h-[78%] w-[70%] -translate-x-1/2 -translate-y-1/2">
+        <div
+          className="absolute left-1/2 top-[18%] h-24 w-24 -translate-x-1/2 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle at 35% 30%, #c4b8a8, #6d645c 70%)",
+          }}
+        />
+        <div
+          className="absolute left-1/2 top-[38%] h-[70%] w-[72%] -translate-x-1/2 rounded-t-[48%]"
+          style={{
+            background:
+              "linear-gradient(180deg, #3a4550 0%, #24303a 40%, #1a2228 100%)",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function Projects() {
-  const [openIdx, setOpenIdx] = useState(null);
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
+  const cardsRef = useRef([]);
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const visibleProjects = useMemo(
+    () =>
+      activeFilter === "All"
+        ? PROJECTS
+        : PROJECTS.filter((project) => project.filter === activeFilter),
+    [activeFilter],
+  );
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -72,170 +188,119 @@ export default function Projects() {
             trigger: sectionRef.current,
             start: "top 75%",
           },
-        }
+        },
       );
     }, sectionRef);
+
     return () => ctx.revert();
   }, []);
+
+  useEffect(() => {
+    const cards = cardsRef.current.filter(Boolean);
+    if (!cards.length) return;
+
+    gsap.fromTo(
+      cards,
+      { y: 24, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.55,
+        stagger: 0.08,
+        ease: "power3.out",
+      },
+    );
+  }, [activeFilter]);
 
   return (
     <section
       id="projects"
       ref={sectionRef}
-      className="relative bg-[#0A0A0A] text-[#F2EFE9] px-8 md:px-16 lg:px-24 py-28"
+      className="relative bg-[#0A0A0A] px-6 py-28 text-[#F2EFE9] md:px-16 lg:px-24"
     >
-      <div className="absolute top-0 left-0 right-0 h-px bg-white/10" />
+      <div className="absolute top-0 right-0 left-0 h-px bg-white/10" />
 
-      <div className="max-w-7xl mx-auto w-full">
-        {/* Header */}
-        <div ref={headerRef} className="flex items-end justify-between mb-16">
-          <div>
-            <p
-              className="text-[11px] tracking-[0.28em] uppercase text-white/30 font-semibold mb-4"
-              style={{ fontFamily: "var(--font-jakarta)" }}
-            >
-              Selected Work
-            </p>
-            <h2
-              className="text-[#F2EFE9] leading-[0.88]"
-              style={{
-                fontFamily: "var(--font-anton)",
-                fontSize: "clamp(3rem, 8vw, 7rem)",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              SELECTED
-              <br />
-              PROJECTS
-            </h2>
-          </div>
-          <a
-            href="https://github.com/Siddharthsingh637"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-flex pill-btn-light pill-btn text-[10px]"
+      <div className="mx-auto w-full max-w-6xl">
+        <div ref={headerRef} className="mb-10 text-center">
+          <p
+            className="mb-4 text-[11px] font-semibold tracking-[0.28em] text-[var(--accent-red)] uppercase"
             style={{ fontFamily: "var(--font-jakarta)" }}
           >
-            All Work ↗
-          </a>
+            Selected Work
+          </p>
+          <h2
+            className="leading-[0.9] text-[#F2EFE9]"
+            style={{
+              fontFamily: "var(--font-anton)",
+              fontSize: "clamp(2.6rem, 7vw, 5.5rem)",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            SELECTED PROJECTS
+          </h2>
         </div>
 
-        {/* Editorial Row List */}
-        <div>
-          {PROJECTS.map((project, i) => (
-            <div key={project.id} className="project-row">
+        <div
+          className="mb-10 flex flex-wrap items-center justify-center gap-2"
+          role="tablist"
+          aria-label="Filter projects"
+        >
+          {FILTERS.map((filter) => {
+            const selected = activeFilter === filter;
+            return (
               <button
-                className="w-full text-left py-6 md:py-8 group"
-                onClick={() => setOpenIdx(openIdx === i ? null : i)}
-                aria-expanded={openIdx === i}
+                key={filter}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setActiveFilter(filter)}
+                className={`rounded-full px-5 py-2 text-[13px] font-medium transition-colors ${
+                  selected
+                    ? "bg-[#F2EFE9] text-[#0A0A0A]"
+                    : "bg-white/8 text-white/70 hover:bg-white/12 hover:text-white"
+                }`}
+                style={{ fontFamily: "var(--font-jakarta)" }}
               >
-                <div className="flex items-start md:items-center justify-between gap-4">
-                  {/* Index + Title */}
-                  <div className="flex items-start md:items-center gap-6 md:gap-10 flex-1 min-w-0">
-                    <span
-                      className="text-xs font-mono text-white/25 tracking-widest shrink-0 mt-1 md:mt-0"
-                      style={{ fontFamily: "var(--font-jakarta)" }}
-                    >
-                      {project.id}
-                    </span>
-                    <div className="min-w-0">
-                      <h3
-                        className="text-[#F2EFE9] group-hover:text-white transition-colors duration-200 leading-tight truncate"
-                        style={{
-                          fontFamily: "var(--font-anton)",
-                          fontSize: "clamp(1.1rem, 3.5vw, 2.2rem)",
-                          letterSpacing: "0.01em",
-                        }}
-                      >
-                        {project.title}
-                      </h3>
-                      <p
-                        className="text-[11px] text-white/35 mt-1 tracking-[0.15em] uppercase"
-                        style={{ fontFamily: "var(--font-jakarta)" }}
-                      >
-                        {project.category} · {project.year}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Tech tags (desktop) */}
-                  <div className="hidden lg:flex items-center gap-2 shrink-0">
-                    {project.tech.slice(0, 3).map((t) => (
-                      <span
-                        key={t}
-                        className="text-[9px] font-medium tracking-wider uppercase px-2.5 py-1 border border-white/10 text-white/40 rounded-full"
-                        style={{ fontFamily: "var(--font-jakarta)" }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Expand Icon */}
-                  <span
-                    className={`text-white/30 text-xl shrink-0 transition-transform duration-300 ${
-                      openIdx === i ? "rotate-45" : "rotate-0"
-                    }`}
-                    style={{ fontFamily: "var(--font-jakarta)" }}
-                  >
-                    +
-                  </span>
-                </div>
+                {filter}
               </button>
+            );
+          })}
+        </div>
 
-              {/* Expandable Drawer */}
-              <div
-                className="overflow-hidden transition-all duration-500 ease-in-out"
-                style={{
-                  maxHeight: openIdx === i ? "400px" : "0px",
-                  opacity: openIdx === i ? 1 : 0,
-                }}
-              >
-                <div className="pb-8 pl-14 md:pl-24">
-                  <p
-                    className="text-white/55 leading-relaxed text-sm md:text-base max-w-2xl mb-6"
-                    style={{ fontFamily: "var(--font-jakarta)" }}
-                  >
-                    {project.description}
-                  </p>
-
-                  {/* Mobile tech tags */}
-                  <div className="flex flex-wrap gap-2 mb-6 lg:hidden">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="text-[9px] font-medium tracking-wider uppercase px-2.5 py-1 border border-white/10 text-white/40 rounded-full"
-                        style={{ fontFamily: "var(--font-jakarta)" }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Links */}
-                  <div className="flex items-center gap-4">
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="pill-btn-light pill-btn text-[10px] py-2.5 px-5"
-                      style={{ fontFamily: "var(--font-jakarta)" }}
-                    >
-                      Live Site ↗
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[11px] text-white/40 hover:text-white/80 tracking-widest uppercase font-medium transition-colors"
-                      style={{ fontFamily: "var(--font-jakarta)" }}
-                    >
-                      GitHub →
-                    </a>
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
+          {visibleProjects.map((project, i) => (
+            <a
+              key={project.id}
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              ref={(el) => {
+                cardsRef.current[i] = el;
+              }}
+              className="group relative block aspect-[5/4] overflow-hidden rounded-[2rem] focus-visible:ring-2 focus-visible:ring-[#F2EFE9] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A] focus-visible:outline-none"
+              aria-label={`${project.title}. ${project.tagline}`}
+            >
+              <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.04]">
+                <CardArt type={project.art} />
               </div>
-            </div>
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+                <h3
+                  className="mb-1.5 text-[1.35rem] leading-tight font-semibold text-white sm:text-[1.5rem]"
+                  style={{ fontFamily: "var(--font-jakarta)" }}
+                >
+                  {project.title}
+                </h3>
+                <p
+                  className="max-w-sm text-sm leading-relaxed text-white/70"
+                  style={{ fontFamily: "var(--font-jakarta)" }}
+                >
+                  {project.tagline}
+                </p>
+              </div>
+            </a>
           ))}
         </div>
       </div>

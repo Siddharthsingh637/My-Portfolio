@@ -92,7 +92,7 @@ export default function About() {
               ["Institution", "R.P. Sharma Institute of Tech"],
               ["CGPA", "7.2"],
               ["Location", "Patna, Bihar, India"],
-              ["Co-Founded", "The Bytehouse"],
+              ["Role", "Developer · Freelancer"],
             ].map(([k, v]) => (
               <div key={k} className="flex items-baseline gap-3">
                 <dt className="text-white/30 w-28 shrink-0">{k}</dt>
@@ -105,7 +105,7 @@ export default function About() {
         {/* Right: editorial bio paragraph */}
         <div ref={bioRef} className="lg:col-span-7 flex flex-col justify-start pt-4 lg:pt-6">
           <p
-            className="text-[11px] tracking-[0.28em] uppercase text-white/30 font-semibold mb-6"
+            className="mb-6 text-[11px] font-semibold uppercase tracking-[0.28em] text-[var(--accent-red)]"
             style={{ fontFamily: "var(--font-jakarta)" }}
           >
             Background &amp; Vision
@@ -129,9 +129,8 @@ export default function About() {
             style={{ fontFamily: "var(--font-jakarta)" }}
           >
             Alongside React, Next.js, and Tailwind, I build backend architectures with Node.js and Express,
-            integrate RESTful APIs, manage relational and document databases. I also co-founded{" "}
-            <strong className="text-white/75 font-semibold">The Bytehouse</strong> — a digital agency
-            delivering full-stack engineering, AI systems, and SEO-driven digital products to ambitious teams.
+            integrate RESTful APIs, and work with relational and document databases. I take freelance and
+            internship projects where clear engineering, clean UI, and reliable delivery matter more than hype.
           </p>
 
           {/* Three pillars */}

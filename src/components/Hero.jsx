@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 // Repeating text for seamless marquee
-const MARQUEE_TEXT = "SIDDHARTH SINGH\u00A0\u00A0\u00A0\u2014\u00A0\u00A0\u00A0";
+const MARQUEE_TEXT = "SIDDHARTH\u00A0\u00A0\u00A0\u2014\u00A0\u00A0\u00A0";
 
 export default function Hero() {
   const sectionRef = useRef(null);
@@ -65,7 +65,7 @@ export default function Hero() {
           className="text-sm tracking-[0.28em] text-[#0A0A0A] uppercase font-bold"
           style={{ fontFamily: "var(--font-jakarta)" }}
         >
-          Siddharth Singh
+          Siddharth<span className="text-[var(--accent-red)]">.</span>
         </span>
         <div
           className="hidden md:flex items-center gap-6 text-[10px] tracking-[0.2em] uppercase text-[#0A0A0A]/50"
@@ -73,13 +73,13 @@ export default function Hero() {
         >
           <span>Full-Stack Dev</span>
           <span className="opacity-30">/</span>
-          <span>Gen-AI Engineer</span>
+          <span>Freelancer</span>
           <span className="opacity-30">/</span>
-          <span>Co-Founder, The Bytehouse</span>
+          <span>Open to Work</span>
         </div>
         <a
           href="mailto:siddharthsingh.6217@gmail.com"
-          className="pill-btn text-[10px] py-2 px-5 border-[#0A0A0A]/30"
+          className="pill-btn pill-btn-accent text-[10px] py-2 px-5"
           style={{ fontFamily: "var(--font-jakarta)" }}
         >
           Hire Me
@@ -127,7 +127,7 @@ export default function Hero() {
             className="text-[#0A0A0A]/75 text-xl sm:text-2xl md:text-3xl italic"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Building for the web — engineered for clarity.
+            Developer &amp; freelancer — building clear, useful products.
           </p>
         </div>
       </div>
@@ -139,8 +139,8 @@ export default function Hero() {
       >
         <div className="flex items-center gap-2 text-[11px] text-[#0A0A0A]/50 tracking-widest uppercase font-medium">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-70" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent-red)] opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent-red)]" />
           </span>
           <span>Available for projects</span>
         </div>

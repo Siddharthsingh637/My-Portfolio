@@ -25,13 +25,13 @@ const instrumentSerif = Instrument_Serif({
 export const metadata = {
   title: "Siddharth Singh — Full-Stack Developer",
   description:
-    "Full-Stack Developer, Generative AI Engineer, and Co-Founder of The Bytehouse. Building for the web — engineered for clarity.",
+    "Full-Stack Developer and Freelancer building clear web products with React, Next.js, and modern backends. Open to internships, freelance, and remote work.",
   keywords: [
     "Siddharth Singh",
     "Full Stack Developer",
+    "Freelancer",
     "React",
     "Next.js",
-    "The Bytehouse",
     "Patna",
     "India",
   ],

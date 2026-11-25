@@ -64,7 +64,7 @@ export default function Contact() {
         {/* Headline */}
         <div ref={headlineRef} className="mb-20">
           <p
-            className="text-[11px] tracking-[0.28em] uppercase text-[#0A0A0A]/30 font-semibold mb-6"
+            className="mb-6 text-[11px] font-semibold uppercase tracking-[0.28em] text-[var(--accent-red)]"
             style={{ fontFamily: "var(--font-jakarta)" }}
           >
             Get In Touch
@@ -81,16 +81,7 @@ export default function Contact() {
             <br />
             CAN TALK.
             <br />
-            <span
-              className="italic text-[#0A0A0A]/25"
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "clamp(1.2rem, 4vw, 3.5rem)",
-                letterSpacing: "0em",
-              }}
-            >
-              (no cold pitches, please)
-            </span>
+            
           </h2>
         </div>
 
@@ -225,7 +216,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="pill-btn mt-4"
+                  className="pill-btn pill-btn-accent mt-4"
                   style={{ fontFamily: "var(--font-jakarta)" }}
                 >
                   Send Message
