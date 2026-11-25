@@ -1,29 +1,35 @@
-import Navbar from "@/components/Navbar/Navbar";
-import Hero from "@/components/Hero/Hero";
-import Projects from "@/components/Projects/Projects";
-import Services from "@/components/Services/Services";
-import Skills from "@/components/Skills/Skills";
-import About from "@/components/About/About";
-import Experience from "@/components/Experience/Experience";
-import Process from "@/components/Process/Process";
-import Stats from "@/components/Stats/Stats";
-import Contact from "@/components/Contact/Contact";
-import Footer from "@/components/Footer/Footer";
+import LenisProvider from "@/components/LenisProvider";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Education from "@/components/Education";
+import Manifesto from "@/components/Manifesto";
+import Projects from "@/components/Projects";
+import Services from "@/components/Services";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Page() {
   return (
-    <main className="bg-[var(--color-ivory)] text-[var(--foreground)] min-h-screen">
-      <Navbar />
-      <Hero />
-      <Projects />
-      <Services />
-      <Skills />
-      <About />
-      <Experience />
-      <Process />
-      <Stats />
-      <Contact />
-      <Footer />
-    </main>
+    <LenisProvider>
+      <main>
+        {/* Hero — sticky base layer, z-index: 1 */}
+        <div className="sticky top-0 z-[1] h-screen">
+          <Hero />
+        </div>
+
+        {/* Everything slides over the hero */}
+        <div className="relative z-[2]">
+          <Navbar />
+          <About />
+          <Education />
+          <Manifesto />
+          <Projects />
+          <Services />
+          <Contact />
+          <Footer />
+        </div>
+      </main>
+    </LenisProvider>
   );
 }
